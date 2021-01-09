@@ -1,0 +1,11 @@
+body{
+    background: rgb(8, 20, 56);
+}
+.card{
+    margin-bottom: 10px;
+}
+
+div#navbarNav li>a:hover{
+    background: rgba(7, 128, 17, 0.609);
+    border-radius: 15px;
+}
