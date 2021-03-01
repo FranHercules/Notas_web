@@ -12,9 +12,12 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const methodOverride = require('method-override');
 const flash = require('connect-flash'); //Nos permite enviar mensajes y recibirlos en un req
 const session = require('express-session'); //Nos permite almacenar los mensajes
+const passport = require('passport');
+
 
 // Initilizations----------
 const app = express();
+require('./config/passport');
 
 // Settings----------
 //Se hacen las cofiguraciones necesarias para express
@@ -39,11 +42,18 @@ app.use(session({ //configuraciones por defecto
     resave: true,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 // Global Variables---------
+//Aqui se asigna a la respuesta del sevidor el recurso "texto" que se guardo con "flash"
 app.use((req, res, next) => {
+    //creamos variables globales para almacenar un mensaje por medio de "flash"
     res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
     next();
 });
 
@@ -52,6 +62,7 @@ app.use((req, res, next) => {
 y las acciones a ejecutar en cada una dependiendo su peticion*/
 app.use(require('./routes/index.routes'));
 app.use(require('./routes/notes.routes'));
+app.use(require('./routes/users.routes'));
 
 // Static Files---------
 app.use(express.static(path.join(__dirname, 'public')));

@@ -5,6 +5,10 @@ body{
     margin-bottom: 10px;
 }
 
+.logo{
+    width: 40%;
+}
+
 div#navbarNav li>a:hover{
     background: rgba(7, 128, 17, 0.609);
     border-radius: 15px;

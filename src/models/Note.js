@@ -11,6 +11,10 @@ const NoteShema = new Schema({
     description: {
         type: String,
         required: true
+    },
+    user: {
+        type: String,
+        required: true
     }
 }, {timestamps: true}) //La propiedad "timestamps" habilita que las propiedades propias
                        //de moongose CreatedAt y UpdatedAt sean requeridas en este esquema

@@ -4,11 +4,13 @@ const bcryptjs = require('bcryptjs');
 //Creando Schema para la estructura de datos de nuestro modelo
 const UserShema = new Schema({
     name: {type: String, required: true},
-    email: {type: String, required: true},
+    email: {type: String, required: true, unique: true},
     password: {type: String, required: true}
 }, {timestamps: true});
 
-//Metodos pertenecientes a la clase "UserShema"
+/*Metodos creados pertenecientes a la clase "UserShema"*/
+/*-------------------------------------------------------------------------*/
+
 //Metodo para encriptar "password" con modulo "bcryptjs"
 UserShema.methods.encryptPassword = async password => {
     const salt = await bcryptjs.genSalt(10);

@@ -13,7 +13,8 @@ const MONGODB_URI = `mongodb://${HOST_MONGODB}/${DATABASE_MONGODB}`;
 //se mandan como parametros la URI con configuraciones requeridas
 mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true 
 
 }).then(db => {
     console.log('Database is connected')
